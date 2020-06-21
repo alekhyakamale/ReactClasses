@@ -1,11 +1,15 @@
 import React from 'react';
 import './App.css';
-import Page1 from './Page1'
+import LoanForm from './LoanForm';
 
 function App() {
   return (
     <React.Fragment>
-       <Page1/>
+       {/* <Switch>
+         <Route exact path="/"><Page1/></Route>
+         <Route exact path="/Display"><Display/></Route>
+       </Switch> */}
+      <LoanForm/>
     </React.Fragment>
   );
 }
