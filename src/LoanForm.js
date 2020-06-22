@@ -20,7 +20,7 @@ export default class LoanForm extends Component {
   };
 
   handleStartOver = () => {
-    // figure out a way to reset formik?
+    
     this.setState({ page: 1, submittedValues: [] });
   };
   render() {
