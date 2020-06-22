@@ -57,9 +57,8 @@ export default class Page1 extends Component {
               />
             )}
           </div>
-          <br />
           {/* Add to loan */}
-          <div className="row">
+          <div className="row my-4">
             <CustomRadioGroup
               label="Would you like to add to your existing ANZ loan?"
               name="addToLoan"
@@ -77,9 +76,9 @@ export default class Page1 extends Component {
               />
             )}
           </div>
-          <br />
+          <hr/>
           {/* Current living situation */}
-          <div className="row">
+          <div className="row my-4">
             <CustomRadioGroup
               label="Your current living situation"
               name="living"
@@ -103,9 +102,8 @@ export default class Page1 extends Component {
               />
             )}
           </div>
-          <br />
               {/* Current state of residence */}
-          <div className="row">
+          <div className="row my-4">
             <CustomRadioGroup
               label="Your current state of residence"
               name="residence"
@@ -113,9 +111,8 @@ export default class Page1 extends Component {
               options={["ACT", "NSW", "NT", "QLD", "SA", "TAS", "VIC", "WA"]}
             />
           </div>
-          <br />
           {/* Number of dependents */}
-          <div className="row">
+          <div className="row my-4">
             <CustomRadioGroup
               label="Number of dependents"
               paragraph="The number of people you're financially responsible for"
@@ -135,8 +132,10 @@ export default class Page1 extends Component {
             )}
           </div>
           {/* Date of birth */}
-          <h3>Date of Birth</h3>
-          <MyInput type="date" label="" name="dob" />
+          <div className="date">
+            <p className="mx-2" style={{fontSize: '1.2rem'}}>Date of birth</p>
+          <MyInput className="row mx-2" type="date" name="dob" />
+          </div>
         </div>
         {/* END of Page-1.  Click to navigate to next page */}
         <div style={{ float: "right" }}>

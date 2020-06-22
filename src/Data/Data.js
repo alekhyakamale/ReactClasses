@@ -5,8 +5,8 @@ export const MyInput = ({ label, ...props }) => {
   const [field, meta] = useField(props);
   return (
     <>
-      <h3 htmlFor={props.id || props.name}>{label}</h3>
-      <input className="text-input" {...field} {...props} />
+      <p className="label-styling" htmlFor={props.id || props.name}>{label}</p>
+      <input className="mx-3" {...field} {...props} />
       {meta.touched && meta.error ? (
         <div className="error">{meta.error}</div>
       ) : null}
@@ -17,9 +17,9 @@ export const MyInput = ({ label, ...props }) => {
 export const ExpenseField = ({ name, label, ...props }) => {
   return (
     <>
-      <h3 style={{ marginBottom: 0 }}>{label}</h3>
       <div className="expense-row">
-        <div className="expense-row--left">
+      <p className="label-styling">{label}</p>
+        <div className="expense-row--left mx-4">
           <MyInput
             id={"expenses-" + name}
             type="number"
@@ -28,7 +28,7 @@ export const ExpenseField = ({ name, label, ...props }) => {
           />
         </div>
         {"  /  "}
-        <div className="expense-row--right">
+        <div className="expense-row--right px-3">
           <Dropdown
             name={name + "Per"}
             selected_value={props.selected_period}
@@ -49,8 +49,7 @@ export const CustomRadioGroup = ({ paragraph, label, ...props }) => {
       component="div"
       render={({ field, meta }) => (
         <>
-          <h3 htmlFor={props.id || props.name}>{label}</h3>
-          <p htmlFor={props.id || props.name}>{paragraph}</p>
+          <p className="label-styling" htmlFor={props.id || props.name}>{label}</p>
           <div className="radio-buttons">
             {props.options.map(opt => (
               <>
@@ -64,7 +63,7 @@ export const CustomRadioGroup = ({ paragraph, label, ...props }) => {
                   handleChange={props.handleChange}
                   handleBlur={props.handleBlur}
                 />
-                <label for={props.name + opt}>{opt}</label>
+                <label className="hover-magic" for={props.name + opt}>{opt}</label>
               </>
             ))}
             {meta.touched && meta.error ? (
@@ -82,10 +81,10 @@ export const Dropdown = ({ label, ...props }) => {
     <Field
       name={props.name}
       component="select"
-      render={({ field, meta }) => (
+      render={({ meta }) => (
         <>
-          <h3 htmlFor={props.id || props.name}>{label}</h3>
-          <div className="drop-down-menu">
+          <p className="label-styling" htmlFor={props.id || props.name}>{label}</p>
+          <div>
             <select
               name={props.name}
               value={props.selected_value}

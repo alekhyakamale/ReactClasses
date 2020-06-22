@@ -8,27 +8,25 @@ export default class Page1 extends Component {
       <>
         <div className="div-color">
           <h2>Your Income</h2>
-          <div>
+          <div className="row">
             <MyInput
               type="number"
               label="What is you Salary?"
               span="$"
               name="salary"
-            />
-            <span>
-              {" "}
-              per{" "}
-              <CustomRadioGroup
+            />{' '}Per{' '}
+                <CustomRadioGroup
                 type="radio"
                 name="incomeper"
+                class="salary-div"
                 value={this.props.formikProps.values.incomeper}
                 options={["year", "month", "fortnight", "week"]}
               />{" "}
-            </span>
-            <input type="checkbox" name="aftertax"
+          </div>
+          <input className="mx-3 hover-magic"
+           type="checkbox" name="aftertax"
              value={this.props.formikProps.values.afterTax} />
             <label for="aftertax">After Tax</label>
-          </div>
           <CustomRadioGroup
             type="radio"
             label="Do you receive any government allowances or pensions?"
@@ -90,7 +88,7 @@ export default class Page1 extends Component {
           />
 
           {/* Diplay sum of all expenses */}
-          <div className="row">
+          <div>
             <br />
             <hr />
             <h3>Estimated Total Expenses</h3>

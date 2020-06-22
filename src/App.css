@@ -1,23 +1,26 @@
 .radio-buttons {
-  display: flex;
-  clear: both;
-  flex-wrap: wrap;
+  margin-left: 20px;
 }
 
 .bigDigits {
   font-size: 2em;
 }
-
+.drop-down-menu {
+  padding: 10px;
+}
+.salary-div{float: right;}
 body {
   background: #eee;
 }
 
 .error {
   color: red;
+  font-size: 0.8rem;
+  margin-left: 20px;
 }
 
 .main-container {
-  max-width: 840px;
+  max-width: 1000px;
   margin: auto;
   padding-bottom: 20px;
 }
@@ -29,10 +32,21 @@ hr {
 }
 button {
   font-size: 1.2em;
+  border: 1px solid #007dba;
+  border-radius: 15%;
   padding: 10px 15px 10px 15px;
   background-color: #007dba;
   color: #fff;
   border: none;
+}
+button:focus{
+  outline: none;
+}
+
+button:hover{
+  background-color: cadetblue;
+  color: white;
+  transition: all ease-in-out 0.2s;
 }
 
 .submitFooter {
@@ -76,12 +90,13 @@ button {
 }
 
 .radio-buttons input:checked + label {
-  background-color: #a5dc86;
+  background-color: #007dba;
+  color: white;
   box-shadow: none;
 }
 
 .div-color {
-  padding: 20px;
+  padding: 50px;
   border: 1px solid #cccccc;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -101,7 +116,8 @@ button {
 }
 
 .card-input-element:checked + .card-input {
-  box-shadow: 0 0 1px 1px #2ecc71;
+  box-shadow: 0 0 1px 1px #007dba;
+  color: white;
 }
 .column {
   display: inline;
@@ -109,8 +125,16 @@ button {
   margin: 10px;
   border: 0.01rem solid black;
 }
-.column:hover {
-  background-color: black;
-  color: white;
+.hover-magic {
+  border-radius: 10%;
+}
+.hover-magic:hover{
+  border: 1px solid #007dba;
+  box-shadow: 1px 1px 0.5px 0.5px lightblue;
   transition: all ease-in-out 0.2s;
+}
+.label-styling {
+  font-size: 1.2rem;
+  width: 100%;
+  margin-left: 20px;
 }
