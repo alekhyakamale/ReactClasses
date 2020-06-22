@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import LoanForm from './LoanForm';
+import LoanForm from './LoanForm/LoanForm';
 
 function App() {
   return (

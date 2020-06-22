@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { MyInput, CustomRadioGroup } from "../Data";
+import { MyInput, CustomRadioGroup } from "../../Data/Data";
 
 export default class Page1 extends Component {
   render() {
@@ -11,13 +11,16 @@ export default class Page1 extends Component {
             We will use this email address to let you know the outcome of your
             application and next steps.
           </p>
+          {/* email */}
           <MyInput name="email" type="email" />
         </div>
         <br />
+        {/* Your loan section */}
         <div className="div-color">
           <div>
             <h2>Your Loan</h2>
             <div className="row">
+              {/* Options for loan */}
               <CustomRadioGroup
                 label="What would you like to use the loan for?"
                 name="loan"
@@ -33,6 +36,7 @@ export default class Page1 extends Component {
                 ]}
               />
             </div>
+            {/* Options when 'Other' option  is selected */}
             {this.props.formikProps.values.loan === "Other" && (
               <CustomRadioGroup
                 label="Please select other loan purpose"
@@ -54,6 +58,7 @@ export default class Page1 extends Component {
             )}
           </div>
           <br />
+          {/* Add to loan */}
           <div className="row">
             <CustomRadioGroup
               label="Would you like to add to your existing ANZ loan?"
@@ -62,7 +67,7 @@ export default class Page1 extends Component {
               value={this.props.formikProps.values.addToLoan}
               options={["Yes", "No"]}
             />
-
+            {/* Option when 'Yes' option is selected */}
             {this.props.formikProps.values.addToLoan === "Yes" && (
               <MyInput
                 label="Balance loan"
@@ -73,7 +78,7 @@ export default class Page1 extends Component {
             )}
           </div>
           <br />
-
+          {/* Current living situation */}
           <div className="row">
             <CustomRadioGroup
               label="Your current living situation"
@@ -88,6 +93,7 @@ export default class Page1 extends Component {
                 "Other"
               ]}
             />
+            {/* Options when 'other' option is selected */}
             {this.props.formikProps.values.living === "Other" && (
               <CustomRadioGroup
                 name="living_more"
@@ -98,7 +104,7 @@ export default class Page1 extends Component {
             )}
           </div>
           <br />
-
+              {/* Current state of residence */}
           <div className="row">
             <CustomRadioGroup
               label="Your current state of residence"
@@ -108,6 +114,7 @@ export default class Page1 extends Component {
             />
           </div>
           <br />
+          {/* Number of dependents */}
           <div className="row">
             <CustomRadioGroup
               label="Number of dependents"
@@ -117,6 +124,7 @@ export default class Page1 extends Component {
               value={this.props.formikProps.values.dependents}
               options={["1", "2", "3", "4", "+"]}
             />
+            {/* Extra options when + is clicked */}
             {this.props.formikProps.values.dependents === "+" && (
               <CustomRadioGroup
                 name="dependents_more"
@@ -126,10 +134,11 @@ export default class Page1 extends Component {
               />
             )}
           </div>
+          {/* Date of birth */}
           <h3>Date of Birth</h3>
           <MyInput type="date" label="" name="dob" />
         </div>
-        {/* END of Page-1.  next button */}
+        {/* END of Page-1.  Click to navigate to next page */}
         <div style={{ float: "right" }}>
           <button type="button" onClick={this.props.nextPage}>
             Next
