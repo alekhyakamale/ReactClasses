@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { MyInput, CustomRadioGroup, ExpenseField } from "./Data";
+import { MyInput, CustomRadioGroup, ExpenseField } from "../Data";
 
 export default class Page1 extends Component {
   render() {

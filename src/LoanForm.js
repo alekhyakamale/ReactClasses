@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import moment from "moment";
-import SummaryPage from "./Display";
-import Page1 from "./Page1";
-import Page2 from "./Page2";
+import SummaryPage from "./Pages/Display";
+import Page1 from "./Pages/Page1";
+import Page2 from "./Pages/Page2";
 
 export default class LoanForm extends Component {
   state = {
