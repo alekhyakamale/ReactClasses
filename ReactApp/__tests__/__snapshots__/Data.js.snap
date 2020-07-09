@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Data without crashing 1`] = `
+Array [
+  <Field
+    component="div"
+    render={[Function]}
+  />,
+]
+`;

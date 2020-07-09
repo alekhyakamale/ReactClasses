@@ -2,17 +2,21 @@ import { useField, Field } from "formik";
 import React from "react";
 
 export const MyInput = ({ label, ...props }) => {
-  const [field, meta] = useField(props);
   return (
-    <>
+    <Field
+      name={props.name}
+      component="div"
+      render={({ meta, ...field }) => (
+        <>
       <p className="label-styling" htmlFor={props.id || props.name}>{label}</p>
       <input className="mx-3" {...field} {...props} />
       {meta.touched && meta.error ? (
         <div className="error">{meta.error}</div>
       ) : null}
-    </>
-  );
-};
+      </>
+      )}
+    />
+)}
 
 export const ExpenseField = ({ name, label, ...props }) => {
   return (

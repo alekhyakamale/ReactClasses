@@ -1,18 +1,23 @@
 import React, { Component } from "react";
 import { MyInput, CustomRadioGroup } from "../../Data/Data";
+import { Form } from "formik";
 
 export default class Page1 extends Component {
+ 
   render() {
-    return (
+    return(
       <>
+      {formikProps => (
+      <Form>
         <div className="div-color">
           <h2>Your email address</h2>
           <p>
             We will use this email address to let you know the outcome of your
             application and next steps.
           </p>
-          {/* email */}
-          <MyInput name="email" type="email" />
+          <div  className="email" >
+          <MyInput data-test="emailInput" name="email" type="email" onChange={formikProps.handleChange}/>
+          </div>
         </div>
         <br />
         {/* Your loan section */}
@@ -63,11 +68,11 @@ export default class Page1 extends Component {
               label="Would you like to add to your existing ANZ loan?"
               name="addToLoan"
               type="radio"
-              value={this.props.formikProps.values.addToLoan}
+              value={formikProps.values.addToLoan}
               options={["Yes", "No"]}
             />
             {/* Option when 'Yes' option is selected */}
-            {this.props.formikProps.values.addToLoan === "Yes" && (
+            {formikProps.values.addToLoan === "Yes" && (
               <MyInput
                 label="Balance loan"
                 type="number"
@@ -83,7 +88,7 @@ export default class Page1 extends Component {
               label="Your current living situation"
               name="living"
               type="radio"
-              value={this.props.formikProps.values.living}
+              value={formikProps.values.living}
               options={[
                 "Home with mortgage",
                 "Home owner",
@@ -93,12 +98,12 @@ export default class Page1 extends Component {
               ]}
             />
             {/* Options when 'other' option is selected */}
-            {this.props.formikProps.values.living === "Other" && (
+            {formikProps.values.living === "Other" && (
               <CustomRadioGroup
                 name="living_more"
                 type="radio"
                 options={["Boarding", "Caravan"]}
-                value={this.props.formikProps.values.living_more}
+                value={formikProps.values.living_more}
               />
             )}
           </div>
@@ -107,7 +112,7 @@ export default class Page1 extends Component {
             <CustomRadioGroup
               label="Your current state of residence"
               name="residence"
-              value={this.props.formikProps.values.residence}
+              value={formikProps.values.residence}
               options={["ACT", "NSW", "NT", "QLD", "SA", "TAS", "VIC", "WA"]}
             />
           </div>
@@ -118,15 +123,15 @@ export default class Page1 extends Component {
               paragraph="The number of people you're financially responsible for"
               name="dependents"
               type="radio"
-              value={this.props.formikProps.values.dependents}
+              value={formikProps.values.dependents}
               options={["1", "2", "3", "4", "+"]}
             />
             {/* Extra options when + is clicked */}
-            {this.props.formikProps.values.dependents === "+" && (
+            {formikProps.values.dependents === "+" && (
               <CustomRadioGroup
                 name="dependents_more"
                 type="radio"
-                value={this.props.formikProps.values.dependents_more}
+                value={formikProps.values.dependents_more}
                 options={["5", "6", "7", "8+"]}
               />
             )}
@@ -139,11 +144,12 @@ export default class Page1 extends Component {
         </div>
         {/* END of Page-1.  Click to navigate to next page */}
         <div style={{ float: "right" }}>
-          <button type="button" onClick={this.props.nextPage}>
+          <button name="next" type="button" onClick={this.props.nextPage}>
             Next
           </button>
         </div>
-      </>
-    );
+      </Form>
+    )}
+    </>);
   }
 }
