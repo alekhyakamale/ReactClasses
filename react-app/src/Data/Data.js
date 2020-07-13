@@ -1,22 +1,45 @@
-import {  Field } from "formik";
+import { useField, Field } from "formik";
 import React from "react";
 
+export const initialValues = [{
+              email: "",
+              loan: "",
+              other_loan: "",
+              addToLoan: "",
+              balance: "",
+              living: "",
+              living_more: "",
+              residence: "",
+              dependents: "",
+              dependents_more: "",
+              dob: "",
+              salary: "",
+              incomeper: "",
+              afterTax: false,
+              allowances: "",
+              rental: "",
+              additional: "",
+              utilities: "",
+              utilitiesPer: "Month",
+              household: "",
+              householdPer: "Month",
+              tv: "",
+              tvPer: "Month",
+              other: "",
+              otherPer: "Month"
+}]
 export const MyInput = ({ label, ...props }) => {
+  const [field, meta] = useField(props);
   return (
-    <Field
-      name={props.name}
-      component="div"
-      render={({ meta, ...field }) => (
-        <>
+    <>
       <p className="label-styling" htmlFor={props.id || props.name}>{label}</p>
       <input className="mx-3" {...field} {...props} />
       {meta.touched && meta.error ? (
         <div className="error">{meta.error}</div>
       ) : null}
-      </>
-      )}
-    />
-)}
+    </>
+  );
+};
 
 export const ExpenseField = ({ name, label, ...props }) => {
   return (

@@ -114,6 +114,15 @@ button:hover{
 .card-input:hover {
   cursor: pointer;
 }
+.summary{
+  margin-left: 40px;
+  margin-right: 40px;
+  padding: 50px;
+  border: 1px solid #cccccc;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background: #fff;
+}
 
 .card-input-element:checked + .card-input {
   box-shadow: 0 0 1px 1px #007dba;

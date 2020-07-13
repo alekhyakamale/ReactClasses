@@ -16,9 +16,4 @@ describe('Components Test', () => {
       const props = {classes: {paper: 'someprop'}};
       wrapper = shallow(<Page1 {...props}/>);
     });
-
-    it('should have email input field', () => {
-      const component = findByDataAttr(wrapper, 'emailInput');
-      expect(component.length).toBe(1);
-    });
 })

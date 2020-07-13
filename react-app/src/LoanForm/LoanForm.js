@@ -5,6 +5,8 @@ import moment from "moment";
 import SummaryPage from "./Display/Display";
 import Page1 from "./Page1/Page1";
 import Page2 from "./Page2/Page2";
+import Axios from 'axios';
+import {initialValues} from '../Data/Data';
 
 export default class LoanForm extends Component {
   state = {
@@ -23,6 +25,7 @@ export default class LoanForm extends Component {
     
     this.setState({ page: 1, submittedValues: [] });
   };
+
   render() {
     return (
       <>
@@ -35,31 +38,7 @@ export default class LoanForm extends Component {
         ) : (
           <Formik
             initialValues={{
-              email: "",
-              loan: "",
-              other_loan: "",
-              addToLoan: "",
-              balance: "",
-              living: "",
-              living_more: "",
-              residence: "",
-              dependents: "",
-              dependents_more: "",
-              dob: "",
-              salary: "",
-              incomeper: "",
-              afterTax: false,
-              allowances: "",
-              rental: "",
-              additional: "",
-              utilities: "",
-              utilitiesPer: "Month",
-              household: "",
-              householdPer: "Month",
-              tv: "",
-              tvPer: "Month",
-              other: "",
-              otherPer: "Month"
+              initialValues
             }}
             validationSchema={Yup.object({
               email: Yup.string()
@@ -110,19 +89,32 @@ export default class LoanForm extends Component {
                 .min(0)
                 .max(100000)
             })}
-            onSubmit={(values) => {
-              // Store the submittedValues in state.
-              this.setState({ submittedValues: values });
-              this.setState({ page: 3 });
+            onSubmit={(values, {setSubmitting}) => {
+              // Post the values to the database via Middleware.
+              Axios({
+                method: "POST",
+                url: "http://localhost:5000/add/createForm",
+                data: values
+              }) 
+                .then((data) => {
+                  setSubmitting(false);
+                  console.log(data);
+                })
+                .catch((error) => {
+                  setSubmitting(false);
+                  console.log('Error: '+ error);
+                });
+                this.setState({page: 3})
+                
             }}
           >
             {formikProps => (
-              <Form>
+              <Form method="post">
                 <div className="main-container">
                   {this.state.page === 1 ? (
                     <Page1 formikProps={formikProps} nextPage={this.nextPage} />
                   ) : (
-                    <Page2 formikProps={formikProps} prevPage={this.prevPage} />
+                    <Page2 formikProps={formikProps} prevPage={this.prevPage}/>
                   )}
                 </div>
               </Form>

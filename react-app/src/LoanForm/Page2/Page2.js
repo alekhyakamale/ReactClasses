@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import {Form} from 'formik';
+
 import { MyInput, CustomRadioGroup, ExpenseField } from "../../Data/Data";
 
 export default class Page1 extends Component {
   render() {
     return (
       <>
-      {formikProps => (<Form>
         <div className="div-color">
           <h2>Your Income</h2>
           <div className="row">
@@ -20,33 +19,33 @@ export default class Page1 extends Component {
                 type="radio"
                 name="incomeper"
                 class="salary-div"
-                value={formikProps.values.incomeper}
+                value={this.props.formikProps.values.incomeper}
                 options={["year", "month", "fortnight", "week"]}
               />{" "}
           </div>
           <input className="mx-3 hover-magic"
            type="checkbox" name="aftertax"
-             value={formikProps.values.afterTax} />
+             value={this.props.formikProps.values.afterTax} />
             <label for="aftertax">After Tax</label>
           <CustomRadioGroup
             type="radio"
             label="Do you receive any government allowances or pensions?"
             name="allowances"
-            value={formikProps.values.allowances}
+            value={this.props.formikProps.values.allowances}
             options={["Yes", "No"]}
           />
           <CustomRadioGroup
             type="radio"
             label="Do you receive any rental income?"
             name="rental"
-            value={formikProps.values.rental}
+            value={this.props.formikProps.values.rental}
             options={["Yes", "No"]}
           />
           <CustomRadioGroup
             type="radio"
             label="Do you receive any other additional income? "
             name="additional"
-            value={formikProps.values.additional}
+            value={this.props.formikProps.values.additional}
             options={["Yes", "No"]}
           />
         </div>
@@ -62,30 +61,30 @@ export default class Page1 extends Component {
           <ExpenseField
             name="utilities"
             label="Utilities"
-            selected_period={formikProps.values["utilitiesPer"]}
-            handleChange={formikProps.handleChange}
-            handleBlur={formikProps.handleBlur}
+            selected_period={this.props.formikProps.values["utilitiesPer"]}
+            handleChange={this.props.formikProps.handleChange}
+            handleBlur={this.props.formikProps.handleBlur}
           />
           <ExpenseField
             name="household"
             label="Household"
-            selected_period={formikProps.values["householdPer"]}
-            handleChange={formikProps.handleChange}
-            handleBlur={formikProps.handleBlur}
+            selected_period={this.props.formikProps.values["householdPer"]}
+            handleChange={this.props.formikProps.handleChange}
+            handleBlur={this.props.formikProps.handleBlur}
           />
           <ExpenseField
             name="tv"
             label="TV & Communications"
-            selected_period={formikProps.values["tvPer"]}
-            handleChange={formikProps.handleChange}
-            handleBlur={formikProps.handleBlur}
+            selected_period={this.props.formikProps.values["tvPer"]}
+            handleChange={this.props.formikProps.handleChange}
+            handleBlur={this.props.formikProps.handleBlur}
           />
           <ExpenseField
             name="other"
             label="Other"
-            selected_period={formikProps.values["otherPer"]}
-            handleChange={formikProps.handleChange}
-            handleBlur={formikProps.handleBlur}
+            selected_period={this.props.formikProps.values["otherPer"]}
+            handleChange={this.props.formikProps.handleChange}
+            handleBlur={this.props.formikProps.handleBlur}
           />
 
           {/* Diplay sum of all expenses */}
@@ -96,10 +95,10 @@ export default class Page1 extends Component {
             <p>
               $
               <span className="bigDigits">
-                {(formikProps.values.utilities || 0) +
-                  (formikProps.values.household || 0) +
-                  (formikProps.values.tv || 0) +
-                  (formikProps.values.other || 0)}
+                {(this.props.formikProps.values.utilities || 0) +
+                  (this.props.formikProps.values.household || 0) +
+                  (this.props.formikProps.values.tv || 0) +
+                  (this.props.formikProps.values.other || 0)}
               </span>{" "}
               /month
             </p>
@@ -111,9 +110,7 @@ export default class Page1 extends Component {
           </button>
           <button type="submit">Submit</button>
         </div>
-  
-  </Form>
- )}
- </>);
-}
+      </>
+    );
+  }
 }
