@@ -1,47 +1,29 @@
 import Axios from 'axios'
 
-import React, { Component } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
+import { FormContext } from '../Context';
 
 
-export default class Display extends Component {
+export default function Display () {
 
-    constructor(props){
-      super(props)
-      this.state = {
-        form: [],
-        isLoading: false
-      };
-    }
-  
-    componentDidMount = () => {
-        this.getValues();
-      }
+    const{handleStartOver} = useContext(FormContext);
+    const [form, setForm] = useState([]);
 
-  //Get the user submitted details from the database
-   getValues = () => {
-  
-    Axios({
-       method: "GET",
-       url: "http://localhost:5000/add/createForm"
-     }) 
-       .then((res) => {
-        const data = res.data;
-        this.setState({ 
-          isLoading: true,
-          form: data });
+    //Get the user submitted details from the database
+    useEffect(()=>{Axios({
+      method: "GET",
+      url: "http://localhost:5000/add/createForm"
+    }) 
+      .then((res) => {
+      setForm(res.data)
       })
-       .catch((error) => {
-         console.log('Error: '+ error);
-       });
-   }
-  
-  render() {
+      .catch((error) => {
+        console.log('Error: '+ error);
+      });
+    }, [])
+      
+    
 
-    var { isLoading, form } = this.state;
-
-    if(!isLoading){
-      return <h3 className="mx-auto px-5 py-5">Loading...</h3>
-    } 
     return (
       <div>
         <h2 className="mx-auto px-5 py-5">Summary Page</h2>
@@ -74,12 +56,12 @@ export default class Display extends Component {
                     <h6>Amount spent on TV and Communications: {val.tv} Per {val.tvPer}</h6>
                     <h6>Other Expenses: {val.other} Per {val.otherPer}</h6>
               </div>
+              <button className="mx-auto" onClick={handleStartOver}>Reset Form</button>
             </div>
           ))}
         </div>
       </div>
     )
-  }
 }
 
 

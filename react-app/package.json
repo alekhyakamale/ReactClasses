@@ -17,8 +17,8 @@
     "enzyme-adapter-react-16": "^1.15.2",
     "formik": "^2.1.4",
     "moment": "^2.26.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "react": "0.0.0-7f28234f8",
+    "react-dom": "0.0.0-7f28234f8",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "yup": "^0.29.1"

@@ -1,10 +1,13 @@
-import React, { Component } from "react";
+import React, { useContext } from "react";
 import { MyInput, CustomRadioGroup } from "../../Data/Data";
+import {FormContext} from '../Context';
 
-export default class Page1 extends Component {
-  render() {
+export default function Page1 ({formikProps}) {
+
+  const {nextPage} = useContext(FormContext);
+    
     return (
-      <>
+     <>
         <div className="div-color">
           <h2>Your email address</h2>
           <p>
@@ -24,7 +27,7 @@ export default class Page1 extends Component {
               <CustomRadioGroup
                 label="What would you like to use the loan for?"
                 name="loan"
-                value={this.props.formikProps.values.loan}
+                value={formikProps.values.loan}
                 type="radio"
                 options={[
                   "Car Loan",
@@ -37,12 +40,12 @@ export default class Page1 extends Component {
               />
             </div>
             {/* Options when 'Other' option  is selected */}
-            {this.props.formikProps.values.loan === "Other" && (
+            {formikProps.values.loan === "Other" && (
               <CustomRadioGroup
                 label="Please select other loan purpose"
                 name="other_loan"
                 type="radio"
-                value={this.props.formikProps.values.other_loan}
+                value={formikProps.values.other_loan}
                 options={[
                   "New Car",
                   "Motor Cycles and Scooters",
@@ -63,11 +66,11 @@ export default class Page1 extends Component {
               label="Would you like to add to your existing ANZ loan?"
               name="addToLoan"
               type="radio"
-              value={this.props.formikProps.values.addToLoan}
+              value={formikProps.values.addToLoan}
               options={["Yes", "No"]}
             />
             {/* Option when 'Yes' option is selected */}
-            {this.props.formikProps.values.addToLoan === "Yes" && (
+            {formikProps.values.addToLoan === "Yes" && (
               <MyInput
                 label="Balance loan"
                 type="number"
@@ -83,7 +86,7 @@ export default class Page1 extends Component {
               label="Your current living situation"
               name="living"
               type="radio"
-              value={this.props.formikProps.values.living}
+              value={formikProps.values.living}
               options={[
                 "Home with mortgage",
                 "Home owner",
@@ -93,12 +96,12 @@ export default class Page1 extends Component {
               ]}
             />
             {/* Options when 'other' option is selected */}
-            {this.props.formikProps.values.living === "Other" && (
+            {formikProps.values.living === "Other" && (
               <CustomRadioGroup
                 name="living_more"
                 type="radio"
                 options={["Boarding", "Caravan"]}
-                value={this.props.formikProps.values.living_more}
+                value={formikProps.values.living_more}
               />
             )}
           </div>
@@ -107,7 +110,7 @@ export default class Page1 extends Component {
             <CustomRadioGroup
               label="Your current state of residence"
               name="residence"
-              value={this.props.formikProps.values.residence}
+              value={formikProps.values.residence}
               options={["ACT", "NSW", "NT", "QLD", "SA", "TAS", "VIC", "WA"]}
             />
           </div>
@@ -118,15 +121,15 @@ export default class Page1 extends Component {
               paragraph="The number of people you're financially responsible for"
               name="dependents"
               type="radio"
-              value={this.props.formikProps.values.dependents}
+              value={formikProps.values.dependents}
               options={["1", "2", "3", "4", "+"]}
             />
             {/* Extra options when + is clicked */}
-            {this.props.formikProps.values.dependents === "+" && (
+            {formikProps.values.dependents === "+" && (
               <CustomRadioGroup
                 name="dependents_more"
                 type="radio"
-                value={this.props.formikProps.values.dependents_more}
+                value={formikProps.values.dependents_more}
                 options={["5", "6", "7", "8+"]}
               />
             )}
@@ -139,11 +142,9 @@ export default class Page1 extends Component {
         </div>
         {/* END of Page-1.  Click to navigate to next page */}
         <div style={{ float: "right" }}>
-          <button type="button" onClick={this.props.nextPage}>
+          <button type="button" onClick={nextPage}>
             Next
           </button>
-        </div>
-      </>
+        </div></>
     );
   }
-}

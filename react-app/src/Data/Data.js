@@ -1,39 +1,40 @@
 import { useField, Field } from "formik";
 import React from "react";
 
-export const initialValues = [{
-              email: "",
-              loan: "",
-              other_loan: "",
-              addToLoan: "",
-              balance: "",
-              living: "",
-              living_more: "",
-              residence: "",
-              dependents: "",
-              dependents_more: "",
-              dob: "",
-              salary: "",
-              incomeper: "",
-              afterTax: false,
-              allowances: "",
-              rental: "",
-              additional: "",
-              utilities: "",
-              utilitiesPer: "Month",
-              household: "",
-              householdPer: "Month",
-              tv: "",
-              tvPer: "Month",
-              other: "",
-              otherPer: "Month"
+export  const initialValues = [{
+  email: "",
+  loan: "",
+  other_loan: "",
+  addToLoan: "",
+  balance: "",
+  living: "",
+  living_more: "",
+  residence: "",
+  dependents: "",
+  dependents_more: "",
+  dob: "",
+  salary: "",
+  incomeper: "",
+  afterTax: false,
+  allowances: "",
+  rental: "",
+  additional: "",
+  utilities: "",
+  utilitiesPer: "Month",
+  household: "",
+  householdPer: "Month",
+  tv: "",
+  tvPer: "Month",
+  other: "",
+  otherPer: "Month"
 }]
 export const MyInput = ({ label, ...props }) => {
   const [field, meta] = useField(props);
   return (
     <>
       <p className="label-styling" htmlFor={props.id || props.name}>{label}</p>
-      <input className="mx-3" {...field} {...props} />
+      <input className="mx-3" {...field} {...props} handlechange={props.handlechange}
+            handleblur={props.handleblur} />
       {meta.touched && meta.error ? (
         <div className="error">{meta.error}</div>
       ) : null}
@@ -58,9 +59,9 @@ export const ExpenseField = ({ name, label, ...props }) => {
         <div className="expense-row--right px-3">
           <Dropdown
             name={name + "Per"}
-            selected_value={props.selected_period}
-            handleChange={props.handleChange}
-            handleBlur={props.handleBlur}
+            selected_value={props.value}
+            handlechange={props.handlechange}
+            handleblur={props.handleblur}
             options={["Week", "Fortnight", "Month", "Quarter", "Year"]}
           />
         </div>
@@ -72,6 +73,7 @@ export const ExpenseField = ({ name, label, ...props }) => {
 export const CustomRadioGroup = ({ paragraph, label, ...props }) => {
   return (
     <Field
+      key={props.id || props.name}
       name={props.name}
       component="div"
       render={({ field, meta }) => (
@@ -87,10 +89,10 @@ export const CustomRadioGroup = ({ paragraph, label, ...props }) => {
                   name={props.name}
                   value={opt}
                   checked={opt === props.value}
-                  handleChange={props.handleChange}
-                  handleBlur={props.handleBlur}
+                  handlechange={props.handlechange}
+                  handleblur={props.handleblur}
                 />
-                <label className="hover-magic" for={props.name + opt}>{opt}</label>
+                <label className="hover-magic" htmlFor={props.name + opt}>{opt}</label>
               </>
             ))}
             {meta.touched && meta.error ? (
@@ -115,8 +117,8 @@ export const Dropdown = ({ label, ...props }) => {
             <select
               name={props.name}
               value={props.selected_value}
-              onChange={props.handleChange}
-              onBlur={props.handleBlur}
+              onChange={props.handlechange}
+              onBlur={props.handleblur}
               style={{ display: "block" }}
             >
               {props.options.map(opt => (
