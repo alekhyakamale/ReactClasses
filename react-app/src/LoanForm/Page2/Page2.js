@@ -25,9 +25,11 @@ export default function Page1 ({formikProps}) {
                 options={["year", "month", "fortnight", "week"]}
               />{" "}
           </div>
-          <input className="mx-3 hover-magic"
-           type="checkbox" name="aftertax"
-             value={formikProps.values.afterTax} />
+          <MyInput 
+              className="mx-3 hover-magic"
+              type="checkbox" 
+              name="aftertax"
+              value={formikProps.values.afterTax} />
             <label for="aftertax">After Tax</label>
           <CustomRadioGroup
             type="radio"

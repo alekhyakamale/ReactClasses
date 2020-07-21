@@ -59,7 +59,7 @@ export const ExpenseField = ({ name, label, ...props }) => {
         <div className="expense-row--right px-3">
           <Dropdown
             name={name + "Per"}
-            selected_value={props.value}
+            selected_value={props.value || ["Month"]}
             handlechange={props.handlechange}
             handleblur={props.handleblur}
             options={["Week", "Fortnight", "Month", "Quarter", "Year"]}

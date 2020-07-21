@@ -1,7 +1,7 @@
-import Axios from 'axios'
-
-import React, { useState, useEffect, useContext } from 'react'
+import moment from 'moment';
+import React, { useState, useEffect, useContext } from 'react';
 import { FormContext } from '../Context';
+import { getMethod } from '../../Axios';
 
 
 export default function Display () {
@@ -10,20 +10,11 @@ export default function Display () {
     const [form, setForm] = useState([]);
 
     //Get the user submitted details from the database
-    useEffect(()=>{Axios({
-      method: "GET",
-      url: "http://localhost:5000/add/createForm"
-    }) 
-      .then((res) => {
-      setForm(res.data)
-      })
-      .catch((error) => {
-        console.log('Error: '+ error);
-      });
-    }, [])
+    useEffect(()=>{
+      getMethod()
+      .then(res => setForm(res.data))
+        }, [])
       
-    
-
     return (
       <div>
         <h2 className="mx-auto px-5 py-5">Summary Page</h2>
@@ -39,12 +30,12 @@ export default function Display () {
                     <h6>Current Living situation: {val.living === 'Other' ? val.living_more : val.living}</h6>
                     <h6>Current state of Residence: {val.residence}</h6>
                     <h6>Number of dependents: {val.dependents === '+' ? val.dependents_more : val.dependents}</h6>
-                    <h6>Date of Birth: {val.dob}</h6>
+                    <h6>Date of Birth: {moment(val.dob).format('DD-MM-YYYY')}</h6>
               </div>
               <div className="summary">
                 <h4>Income</h4>
                     <h6>Salary: {val.salary} Per {val.incomeper}</h6>
-                    <h6>After Tax {val.afterTax}</h6>
+                    <h6>After Tax: {val.afterTax}</h6>
                     <h6>Government Allowances or Pensions: {val.allowances}</h6>
                     <h6>Rental Income: {val.rental}</h6>
                     <h6>Additional Income: {val.additional}</h6>

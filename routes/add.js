@@ -3,12 +3,12 @@ const router = express.Router();
 
 const Add = require('../Models/add');
 
-router.get("/", (req, res) => {
+router.get("/", (res) => {
     res.send("This is add route");
 });
 
 
-router.get("/createForm", (req, res) => {
+router.get('/createForm', (res) => {
     Add.find((error, data) => {
         if(error)
         return next(error);
