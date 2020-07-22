@@ -2,7 +2,7 @@ import moment from 'moment';
 import React, { useState, useEffect, useContext } from 'react';
 import { FormContext } from '../Context';
 import { getMethod } from '../../Axios';
-
+import _ from "lodash";
 
 export default function Display () {
 
@@ -14,14 +14,14 @@ export default function Display () {
       getMethod()
       .then(res => setForm(res.data))
         }, [])
-      
-    return (
+       
+    return ( 
       <div>
         <h2 className="mx-auto px-5 py-5">Summary Page</h2>
         <div>
           {
-          form.slice(-1).map(val => (
-            <div key={val.id}>
+          _.map(_.slice(form, -1), function(val) {
+            return <div key={val.id}>
               <div className="summary">
                 <h4>Personal Details</h4>
                     <h6>Email ID: {val.email}</h6>
@@ -49,7 +49,7 @@ export default function Display () {
               </div>
               <button className="mx-auto" onClick={handleStartOver}>Reset Form</button>
             </div>
-          ))}
+          })}
         </div>
       </div>
     )

@@ -1,5 +1,6 @@
 import { useField, Field } from "formik";
 import React from "react";
+import _ from 'lodash';
 
 export  const initialValues = [{
   email: "",
@@ -80,21 +81,21 @@ export const CustomRadioGroup = ({ paragraph, label, ...props }) => {
         <>
           <p className="label-styling" htmlFor={props.id || props.name}>{label}</p>
           <div className="radio-buttons">
-            {props.options.map(opt => (
-              <>
+            { _.map(props.options, function(opt) {
+              return <>
                 <input
                   {...field}
                   type="radio"
                   id={props.name + opt}
                   name={props.name}
                   value={opt}
-                  checked={opt === props.value}
+                  checked={ _.eq(opt, props.value)}
                   handlechange={props.handlechange}
                   handleblur={props.handleblur}
                 />
                 <label className="hover-magic" htmlFor={props.name + opt}>{opt}</label>
               </>
-            ))}
+      })}
             {meta.touched && meta.error ? (
               <div className="error">{meta.error}</div>
             ) : null}
@@ -121,9 +122,9 @@ export const Dropdown = ({ label, ...props }) => {
               onBlur={props.handleblur}
               style={{ display: "block" }}
             >
-              {props.options.map(opt => (
-                <option value={opt} label={opt} />
-              ))}
+              { _.map(props.options, function(opt){
+                return <option value={opt} label={opt} />
+                 })}
             </select>
 
             {meta.touched && meta.error ? (

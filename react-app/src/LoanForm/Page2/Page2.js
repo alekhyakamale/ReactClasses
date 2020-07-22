@@ -100,9 +100,9 @@ export default function Page1 ({formikProps}) {
               $
               <span className="bigDigits">
                 {(formikProps.values.utilities || 0) +
-                  (formikProps.values.household || 0) +
-                  (formikProps.values.tv || 0) +
-                  (formikProps.values.other || 0)}
+                 (formikProps.values.household || 0) +
+                 (formikProps.values.tv || 0) +
+                 (formikProps.values.other || 0)}
               </span>{" "}
               /month
             </p>

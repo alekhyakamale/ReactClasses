@@ -8,15 +8,16 @@ import {postMethod} from '../Axios'
 import {initialValues} from '../Data/Data'
 import * as Yup from "yup";
 import moment from "moment";
+import _ from 'lodash';
 
 
 export default function LoanForm() {
-      const {page, submittedValues, setPage, setSubmittedValues, 
-             handleStartOver, nextPage, prevPage} = useContext(FormContext);
+    const {page, submittedValues, setPage, setSubmittedValues, 
+           handleStartOver, nextPage, prevPage} = useContext(FormContext);
       
     return (
     <>
-        {page === 3 ? (
+        { _.eq(page, 3) ? (
           // Summary Page with user submitted details
           <SummaryPage
             values={submittedValues}
@@ -97,7 +98,7 @@ export default function LoanForm() {
           >{formikProps => (
               <Form>
                 <div className="main-container">
-                  { page === 1 ? (
+                  { _.eq(page, 1) ? (
                     <Page1 formikProps={formikProps} nextPage={nextPage}/>
                   ) : (
                     <Page2 formikProps={formikProps} prevPage={prevPage}/>

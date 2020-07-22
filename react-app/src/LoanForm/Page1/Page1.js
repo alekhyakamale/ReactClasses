@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { MyInput, CustomRadioGroup } from "../../Data/Data";
 import {FormContext} from '../Context';
+import _ from "lodash";
 
 export default function Page1 ({formikProps}) {
 
@@ -40,7 +41,7 @@ export default function Page1 ({formikProps}) {
               />
             </div>
             {/* Options when 'Other' option  is selected */}
-            {formikProps.values.loan === "Other" && (
+            { _.eq(formikProps.values.loan, "Other") && (
               <CustomRadioGroup
                 label="Please select other loan purpose"
                 name="other_loan"
@@ -70,7 +71,7 @@ export default function Page1 ({formikProps}) {
               options={["Yes", "No"]}
             />
             {/* Option when 'Yes' option is selected */}
-            {formikProps.values.addToLoan === "Yes" && (
+            { _.eq(formikProps.values.addToLoan, "Yes") && (
               <MyInput
                 label="Balance loan"
                 type="number"
@@ -96,7 +97,7 @@ export default function Page1 ({formikProps}) {
               ]}
             />
             {/* Options when 'other' option is selected */}
-            {formikProps.values.living === "Other" && (
+            { _.eq(formikProps.values.living, "Other") && (
               <CustomRadioGroup
                 name="living_more"
                 type="radio"
@@ -125,7 +126,7 @@ export default function Page1 ({formikProps}) {
               options={["1", "2", "3", "4", "+"]}
             />
             {/* Extra options when + is clicked */}
-            {formikProps.values.dependents === "+" && (
+            { _.eq(formikProps.values.dependents, "+") && (
               <CustomRadioGroup
                 name="dependents_more"
                 type="radio"
